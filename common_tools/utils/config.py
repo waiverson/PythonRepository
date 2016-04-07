@@ -35,7 +35,7 @@ def read_object_from_python_module(path, name):
         else:
             # the ImportError is raised inside python module to be imported
             raise
-    return config_obj        
+    return config_obj
 
 
-    
+
