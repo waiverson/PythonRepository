@@ -1,11 +1,5 @@
 #!/usr/bin/env python
 # encoding: utf-8
-"""
-picture.py
-
-Created by geng xinyue on 2011-03-16.
-Copyright (c) 2011 douban.com. All rights reserved.
-"""
 
 import math
 from cStringIO import StringIO
