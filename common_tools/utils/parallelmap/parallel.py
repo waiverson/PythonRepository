@@ -2,7 +2,7 @@ from multiprocessing import Process, Queue, cpu_count
 from random import randint, seed as py_seed
 
 """
-    from mapp import mapp
+    from parallel import mapp
     from shmarray import zeros
 
     class Foo:
