@@ -4,9 +4,11 @@ import unittest
 import sys
 from io import BytesIO
 from ftplib import FTP
-from webserver import StubServer
-from ftpserver import FTPStubServer
 from unittest import TestCase
+
+from stubserver.webserver import StubServer
+from ftpserver import FTPStubServer
+
 if sys.version_info[0] < 3:
     from urllib2 import OpenerDirector, HTTPHandler, Request
 else:

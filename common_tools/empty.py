@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-empty.py
+empty.py  空对象示例代码
 """
 
 class Empty(object):

@@ -3,7 +3,7 @@
 
 import os.path
 import imp
-from .read_object import read_object
+from common_tools.utils.read_object import read_object
 
 config_dir = '/etc/douban'
 
