@@ -1,9 +1,11 @@
-__author__ = 'Administrator'
+# coding=utf-8
+__author__ = 'xyc'
 
 
 # The Command Pattern is used to encapsulate commands as objects. This
 # makes it possible, for example, to build up a sequence of commands for deferred
 # execution or to create undoable commands.
+# 讲一个请求封装为一个对象，从而是你可用不同的请求对客户进行参数化；对请求排队或记录请求日志，以及支持可撤销的操作。
 
 class Grid:
     def __init__(self, width, height):
