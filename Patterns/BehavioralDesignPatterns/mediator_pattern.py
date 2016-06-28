@@ -4,6 +4,8 @@ __author__ = 'xyc'
 # —that can encapsulate the interactions between other objects.
 
 # sample one a conventional mediator
+# mediator 作为中介，协调输入框text，按钮button与form直接的联动关系，text的改变通过mediator调用form的updateui
+# button的状态改变，通过mediator调用form对象的clicked
 
 import collections
 
