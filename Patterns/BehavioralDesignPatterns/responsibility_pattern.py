@@ -1,10 +1,11 @@
+# coding=utf-8
 __author__ = 'xyc'
 
 import functools
 
 # The Chain of Responsibility Pattern is designed to decouple the sender of a
 # request from the recipient that processes the request.
-
+# 将能处理请求的对象连成一条链，并沿着这条链传递该请求，直到有一个对象处理请求为止，避免请求的发送者和接收者之间的耦合关系。
 
 def coroutine(function):
     @functools.wraps(function)
