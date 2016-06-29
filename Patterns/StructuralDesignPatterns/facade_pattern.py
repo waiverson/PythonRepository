@@ -3,7 +3,7 @@ __author__ = 'xyc'
 import re,zipfile,tarfile,gzip,string
 
 """
-The Fa?ade Pattern is used to present a simplified and uniform interface to a
+The Facade Pattern is used to present a simplified and uniform interface to a
 subsystem whose interface is too complex or too low-level for convenient use
 """
 
@@ -30,6 +30,7 @@ class Archive:
 
     def __enter__(self):
         return self
+
     def __exit__(self, exc_type, exc_value, traceback):
         self.close()
 
