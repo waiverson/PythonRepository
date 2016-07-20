@@ -36,3 +36,68 @@ def retry(func):
                     raise
                 time.sleep(0.1)
     return _ 
+
+# A decorator without arguments
+def decorator(f):
+    @wraps(f)
+    def wrapped(*args, **kwargs):
+        results = f(*args, **kwargs)
+        # do something
+        return results
+    return wrapped
+
+
+# A Decorator with arguments
+def decorator_args(a, b, c):
+    def decorator(f):
+        @wraps(f)
+        def wrapped(*args, **kwargs):
+            results = f(*args, **kwargs)
+            # do something
+            return results
+        return wrapped
+    return decorator
+
+#The email decorator
+def email(f):
+    @wraps(f)
+    def wrapped(*args, **kwargs):
+        envelope = f(*args, **kwargs)
+        envelope.from_addr = api.config['SYSTEM_EMAIL']
+        def task():
+            smtp().send(envelope)
+        gevent.spawn(task)
+        return jsonify({"status": "OK"})
+    return wrapped
+
+# building the limit decorator
+def limit(requests=100, window=60, by="ip", group=None):
+    if not callable(by):
+        by = { 'ip': lambda: request.headers.remote_addr }[by]
+
+    def decorator(f):
+        @wraps(f)
+        def wrapped(*args, **kwargs):
+            group = group or request.endpoint
+            key = ":".join(["rl", group, by()])
+
+            try:
+                remaining = requests - int(redis.get(key))
+            except (ValueError, TypeError):
+                remaining = requests
+                redis.set(key, 0)
+
+            ttl = redis.ttl(key)
+            if not ttl:
+                redis.expire(key, window)
+                ttl = window
+
+            g.view_limits = (requests,remaining-1,time()+ttl)
+
+            if remaining > 0:
+                redis.incr(key, 1)
+                return f(*args, **kwargs)
+            else:
+                return Response("Too Many Requests", 429)
+        return wrapped
+    return decorator
